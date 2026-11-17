@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#193964">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self' data: blob:; style-src 'self'; img-src 'self' https: data: blob:; media-src https: blob:; object-src blob:; frame-src blob:; font-src 'self'; base-uri 'none'; form-action 'none'">
+<title>zBon — IELTS Practice Studio</title>
+<link rel="stylesheet" href="style.css?v=20261117-36"><script defer src="vendor/mammoth/mammoth.browser.min.js"></script><script defer src="scan.js?v=20261117-36"></script><script defer src="import.js?v=20261117-36"></script><script defer src="assemble.js?v=20261117-36"></script><script defer src="app.js?v=20261117-36"></script><script defer src="reading.js?v=20261117-36"></script><script defer src="review.js?v=20261117-36"></script><script defer src="stats.js?v=20261117-36"></script>
+<script defer src="library.js?v=20261117-36"></script><link rel="stylesheet" href="refinement.css?v=36"></head>
+<body>
+<header class="mast"><div class="mast-inner"><a class="brand" href="#builder" aria-label="zBon home"><span class="brandmark"><i></i><i></i><i></i></span>zBon<span class="brand-dot">.</span></a><span class="brand-sub">IELTS Studio</span><nav aria-label="Main"><button id="builder-tab" class="nav active"><i data-icon="grid"></i>Exam builder</button><button id="library-tab" class="nav"><i data-icon="library"></i>Library</button><button id="history-tab" class="nav"><i data-icon="history"></i>History</button><button id="stats-tab" class="nav"><i data-icon="stats"></i>Test stats</button><button id="theme-toggle" class="nav" aria-pressed="false">Dark theme</button></nav></div></header>
+<main>
+<section id="builder">
+<div class="crumb">Workspace <span>/</span> Exam builder</div>
+<div class="hero"><div class="hero-copy"><div class="hero-label"><span class="signal"></span>IELTS PRACTICE STUDIO</div><h1>Build your exam<span>.</span></h1><p>Upload an exam or write your own passages and questions.</p></div>
+<div class="art" aria-hidden="true"><div class="sheet back"></div><div class="sheet front"><div class="sheet-head">IELTS <small>EXAM PAPER</small></div><div class="bar long"></div><div class="bar medium"></div><div class="sheet-rule"></div><div class="bubble-line"><b>01</b><i></i><i></i><i></i><i></i></div><div class="bubble-line"><b>02</b><i></i><i></i><i></i><i></i></div><div class="bubble-line"><b>03</b><i></i><i></i><i></i><i></i></div></div><div class="pencil"></div></div></div>
+<div class="layout"><div class="formstack">
+<section class="card"><div class="step-head"><span class="step">01</span><h2>Choose your exam type</h2></div><div class="types" role="group" aria-label="Exam type"></div>
+<div class="session-settings"><label for="test-name">Test name<input type="text" id="test-name" maxlength="160" placeholder="Name your test"></label>
+<label for="timing">Timer<select id="timing"><option value="free">Free practice</option><option value="preset">IELTS preset</option><option value="custom">Custom time</option></select></label>
+<label id="minutes-setting" for="minutes" hidden>Minutes<input type="number" id="minutes" required min="1" step="1" value="60"></label>
+<label id="build-mode-field" for="build-mode">Create from<select id="build-mode"><option value="upload">Uploaded files</option><option value="manual">Build manually</option></select></label></div></section>
+<section class="card" id="upload-card"><div class="step-head"><span class="step">02</span><h2 id="upload-title">Upload your files</h2></div><div class="uploads">
+<div id="recording-field" hidden><label for="audio-mode">Audio files</label><select id="audio-mode"><option value="one">One recording</option><option value="four">Four section recordings</option></select><div id="single-recording"><label class="drop" id="recording-drop"><input type="file" id="recording" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.webm"><span class="upload-icon"><i data-icon="headphones"></i></span><strong>Choose audio file</strong><small>Listening recording</small></label><button type="button" id="clear-recording" hidden>Remove recording</button></div><div id="section-recordings" hidden></div></div>
+<div><h3 id="paper-title">Exam paper</h3><label class="drop" id="paper-drop"><input type="file" id="paper" accept=".docx,.html,.htm,.pdf"><span class="upload-icon"><i data-icon="upload"></i></span><strong>Choose exam file</strong><small>Word (.docx), HTML or PDF</small></label></div>
+<div><h3 id="key-title">Answer key</h3><label class="drop" id="key-drop"><input type="file" id="key" accept=".html,.htm,.txt,.pdf,.docx,text/html,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><span class="upload-icon"><i data-icon="key"></i></span><strong>Choose results or answer key</strong><small>PDF, Word (.docx), HTML or TXT</small></label></div></div>
+<p class="sub grading-note">The site automatically grades IELTS Reading and Listening tests with exactly 40 questions. Other question counts are saved as ungraded practice. Writing has 2 tasks for manual review.</p>
+<details id="guide">
+<summary>File format guide</summary>
+<ol>
+<li><strong>Exam paper</strong> For <mark>Reading</mark> and <mark>Listening</mark>, upload a <strong>DOCX, PDF or HTML</strong> file with passages, section headings and numbered questions. Scanned pages are supported. Check the recognized text in Preview test and edit any mistakes before starting.</li>
+<li><strong>Answer key</strong> Upload the matching PDF, DOCX, HTML or TXT file. Put <strong>one numbered answer per line</strong>, such as <code>1. London</code>. Separate accepted alternatives with <code>|</code>, such as <code>2. 35 | thirty five</code>. A saved HTML results page must include the correct answers. For <mark>Writing</mark>, upload a separate PDF, JPG/JPEG or PNG for each task, or paste a screenshot into each task box.</li>
+<li><strong><mark>Listening</mark> audio</strong> Upload one full recording or four files in part order. Use Part 1 for questions 1–10, Part 2 for 11–20, Part 3 for 21–30 and Part 4 for 31–40. Linked audio in an HTML paper can also be used.</li>
+</ol>
+<p class="formatting-tip"><strong>Tip — prepare your files with AI</strong> Upload your original paper and answer key to your AI assistant, then paste the prompt below. A selectable-text DOCX with clear numbering is easier to read accurately. Compare the exported files with your originals before uploading them here.</p>
+<details class="ai-prompt"><summary>Example prompt to copy</summary><p>Copy the text between the quotation marks below.</p><pre tabindex="0">&quot;Convert the attached IELTS paper and answer key into two separate files for an exam website.
+
+1. Create an exam-paper DOCX with selectable text. Preserve all original wording, instructions, passages, tables and question numbers. Preserve diagrams as images. Read scanned text carefully and flag anything unclear instead of guessing.
+
+2. Put each section heading on its own line. For Listening, use Part 1, Part 2, Part 3 and Part 4, with questions 1–10, 11–20, 21–30 and 31–40. For Reading, use Reading Passage 1, Reading Passage 2 and Reading Passage 3.
+
+3. Put each question-group heading on its own line, for example “Questions 1–6”. Keep each question number with its question. For completion questions, keep the number and dotted blank inside the sentence, for example “The 1 ............ of London increased rapidly.”
+
+4. Put each multiple-choice option on its own line, labelled A, B, C or D as printed. Put every entry in a matching list on its own line. Keep passage labels A, B, C and so on on separate lines before their paragraphs.
+
+5. Create a separate answer-key TXT file, with one numbered answer per line, for example:
+1. litter
+2. dogs
+Use | only for accepted alternatives to the same answer. Preserve “either order” pairs, for example “15&amp;16. A | D”. For Writing, export separate Task 1 and Task 2 PDFs.
+
+Keep the original question count and answers. Flag missing or unreadable content for me to check. Return both downloadable files.&quot;</pre></details>
+</details>
+
+</section></div>
+<aside class="side"><section class="card summary"><div class="side-title"><i data-icon="sliders"></i><h2>Session overview</h2></div><div class="summary-row"><span>Exam type</span><strong id="sum-type">Reading</strong></div><div class="summary-row" id="sum-recording-row" hidden><span>Audio file</span><strong id="sum-recording" class="pending">Awaiting file</strong></div><div class="summary-row"><span>Exam paper</span><strong id="sum-paper" class="pending">Awaiting file</strong></div><div class="summary-row"><span id="sum-key-title">Answer key</span><strong id="sum-key" class="pending">Awaiting file</strong></div>
+<div class="summary-row" id="sum-manual-row" hidden><span>Manual test</span><strong id="sum-manual"></strong></div>
+<p id="scan-status" role="status" hidden></p><p id="setup-error" role="alert" hidden></p><p id="readiness" role="status"></p><button class="primary full" id="preview-test">Start exam</button><button id="start" hidden>Start exam</button><div class="local"><i data-icon="lock"></i>Files stay on this device</div></section>
+<button id="sample" class="sample"><span class="sample-icon"><i data-icon="play"></i></span><span><strong>Try a sample exam</strong><small>3-question reading practice</small></span><i data-icon="chevron"></i></button></aside></div>
+<section id="manual-editor" aria-labelledby="manual-title" hidden><div class="editor-heading"><h2 id="manual-title">Assemble your test</h2><span id="draft-status" role="status"></span></div>
+<div class="tabs" id="edit-parts" aria-label="Sections to edit"></div>
+<div class="exam-grid"><article class="card"><h2><label id="passage-label" for="edit-passage">Passage text</label></h2><textarea id="edit-passage" rows="16"></textarea></article>
+<article class="card"><h2>Questions</h2><div id="edit-questions"></div><button class="secondary" id="add-question">Add question</button></article></div>
+<div class="exam-actions"><button class="primary" id="start-manual">Start exam</button></div><p id="manual-error" role="alert" hidden></p></section></section>
+<section id="library" hidden></section><section id="exam" hidden></section><section id="review" hidden></section><section id="history" hidden></section><section id="stats" hidden></section><section id="detail" hidden></section>
+</main><footer><b>zBon<span>.</span></b><span>Personal IELTS practice studio</span></footer>
+<dialog id="scan-review" aria-labelledby="scan-heading">
+<h2 id="scan-heading">Scanned answer key</h2>
+<p id="scan-count"></p>
+<details id="scan-editor"><summary>Review or edit recognized answers</summary>
+<label for="scan-key">Numbered answers</label>
+<textarea id="scan-key" rows="12" spellcheck="false"></textarea>
+<details><summary>Show recognized text</summary><pre id="scan-raw"></pre></details></details>
+<p id="scan-error" role="alert" hidden></p>
+<div><button class="secondary" id="scan-cancel">Back</button><button class="primary" id="scan-accept">Use these answers</button></div>
+</dialog>
+<dialog id="confirm"><h2></h2><p></p><div><button class="secondary" id="cancel">Keep practising</button><button class="primary" id="confirm-action">Submit exam</button></div></dialog>
+</body></html>
